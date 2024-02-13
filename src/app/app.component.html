@@ -1,5 +1,64 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
+<div class=" h-screen">
+
+  <!-- Navbar -->
+
+
+  <app-navbar (searchValueChanged)="handleSearchValue($event)" (selectionChanged)="handleSelectionChange($event)"
+    (callParentFunctionEvent)="fetchUser()">
+  </app-navbar>
+
+
+  <div class="flex h-[90vh] overflow-hidden bg-white">
+    <!-- Left Panel -->
+    <div class="border-r w-1/4">
+      <app-user-panel *ngIf="isValidUser" [userDetails]="userDetails"></app-user-panel>
+    </div>
+
+    <!-- Right Panel -->
+
+    <div class="flex-1 flex-col flex relative justify-between">
+
+
+      <div *ngIf="githubResponseStatus === 'No User Found'"
+        class="items-center flex flex-col  justify-center flex-1 space-y-4">
+        <img src="/assets/icons/cancel-icon.svg" class="h-40 w-40" />
+        <p class="text-4xl font-bold">No User Found</p>
+      </div>
+      <div *ngIf="githubResponseStatus === 'No Public Repositories'"
+        class="items-center flex flex-col  justify-center flex-1 space-y-4">
+        <img src="/assets/icons/cancel-icon.svg" class="h-40 w-40" />
+        <p class="text-4xl font-bold">No Public Repositories Found</p>
+      </div>
+
+
+
+      <div class="py-8 overflow-y-scroll px-8">
+
+        <div *ngIf="loadingRepos" class=" grid grid-cols-3 gap-5">
+          <app-skeleton *ngFor="let dummyItem of dummyItems"></app-skeleton>
+        </div>
+
+        <div *ngIf="!loadingRepos" class="grid grid-cols-3 gap-5">
+          <app-github-card *ngFor="let repository of publicRepositories" [repository]="repository"></app-github-card>
+        </div>
+
+      </div>
+
+
+
+      <div class="h-[10vh] bg-white  border-t  z-10">
+        <div *ngIf="isValidUser" class="flex justify-center items-center space-x-4 h-full">
+          <button *ngIf="isValidUser" [disabled]="currentPage === 1" (click)="goToPreviousPage()">Previous</button>
+          <div *ngFor="let pageNumber of paginationNumbers" (click)="navigateToPage(pageNumber)"
+            [class.active]="pageNumber === currentPage"
+            class="pagination-link w-10 text-center py-2 rounded-md cursor-pointer border-fylesearch-primary border"
+            [ngClass]="currentPage === pageNumber ? 'bg-fylesearch-primary text-white' : ''">
+            {{ pageNumber }}
+          </div>
+          <button *ngIf="isValidUser" [disabled]="currentPage === totalPages" (click)="goToNextPage()">Next</button>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>

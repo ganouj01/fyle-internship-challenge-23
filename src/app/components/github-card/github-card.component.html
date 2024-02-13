@@ -1,0 +1,16 @@
+<div class="rounded-md border p-4 space-y-2">
+
+
+
+    <a class="text-2xl hover:underline cursor-pointer hover:text-fylesearch-primary"
+        href={{repository.html_url}}>{{repository.name}}</a>
+
+    <p class="text-xs whitespace-pre-line break-words">{{repository.description}}</p>
+    <div class="grid grid-cols-3 gap-1">
+        <div *ngFor="let topic of repository.topics"
+            class="border rounded-md bg-fylesearch-primary text-white  text-center px-2 py-1 text-xs font-semibold">
+            {{topic}}
+        </div>
+
+    </div>
+</div>

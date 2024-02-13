@@ -1,0 +1,28 @@
+<div class="flex-col flex items-center py-8 space-y-2 whitespace-pre-line break-all">
+    <img src={{userDetails.avatarUrl}} class="h-24 w-24 rounded-full border bg-black" />
+    <p class="font-semibold text-2xl">@{{userDetails.username}}</p>
+    <p class="">{{userDetails.bio}}</p>
+    <div *ngIf="userDetails.location?.length" class="flex items-center space-x-2"><img
+            src="assets/icons/map-pin-icon.svg" class="h-5 w-5" />
+        <p>{{userDetails.location}}</p>
+    </div>
+    <div class="flex items-center space-x-2 "><img src="assets/icons/link-icon.svg" class="h-5 w-5" />
+        <a href={{userDetails.gitUrl}} class="text-blue-500 underline">{{userDetails.gitUrl}}</a>
+    </div>
+
+
+    <div class='grid grid-cols-3 text-center gap-2'>
+        <div>
+            <p class="font-semibold">Following</p>
+            <p>{{userDetails.followingCount}}</p>
+        </div>
+        <div>
+            <p class="font-semibold">Followers</p>
+            <p>{{userDetails.followerCount}}</p>
+        </div>
+        <div>
+            <p class="font-semibold">Public Repos</p>
+            <p>{{userDetails.publicRepos}}</p>
+        </div>
+    </div>
+</div>
