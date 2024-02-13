@@ -31,7 +31,41 @@ You will hear back within 48 hours from us via email.
 
 ### Install requirements
 * Install angular cli [Ref](https://angular.io/cli)
-* `npm install` in this repository 
+* `npm install` in this repository
+
+## Unit Test: Api Service
+The Api Service is responsible for fetching public repositories of a given GitHub username.
+
+## Overview
+This unit test suite ensures that the Api service behaves correctly under different scenarios, including successful data fetching and error handling.
+
+## Test Cases
+
+Fetch Repositories Test -
+Test Description: Tests the getRepositories method to ensure that it correctly fetches repositories for a given username.
+
+Test Method:
+
+It sets up the test environment by configuring TestBed with the necessary imports and providers.
+It creates a mock response for repositories and sets up an HTTP request to mock the GitHub API response.
+It calls the getRepositories method with a mock username and verifies that the returned repositories match the mock response.
+
+
+Error Handling Test - 
+Test Description: Tests how the service handles errors when fetching repositories.
+
+Test Method:
+
+It sets up the test environment similar to the Fetch Repositories Test.
+It simulates an error response from the GitHub API by causing the HTTP request to error out.
+It expects that the service correctly handles the error and emits an error event.
+How to Run
+Run the unit tests using your preferred Angular testing framework. For example:
+ng test
+
+## Adjustments
+Adjust the test cases as needed based on changes to the GitHub service implementation or additional requirements.
+
 
 ## Development server
 
