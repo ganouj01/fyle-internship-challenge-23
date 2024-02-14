@@ -8,7 +8,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class NavbarComponent {
   @Output() searchValueChanged = new EventEmitter<string>();
   @Output() selectionChanged = new EventEmitter<number>();
-  @Output() callParentFunctionEvent = new EventEmitter<void>();
+  @Output() searchUsername = new EventEmitter<void>();
 
   searchQuery: string = '';
   selectedOption: number = 10;
@@ -23,7 +23,7 @@ export class NavbarComponent {
     this.selectionChanged.emit(this.selectedOption);
   }
 
-  callParentFunction() {
-    this.callParentFunctionEvent.emit();
+  onSearchUsername() {
+    this.searchUsername.emit();
   }
 }
